@@ -1,0 +1,41 @@
+export ZOPEN_TARBALL_URL="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.3p1.tar.gz"
+export ZOPEN_TARBALL_DEPS="make zlib openssl zoslib tar gzip coreutils sed"
+export ZOPEN_TYPE="TARBALL"
+export ZOPEN_EXTRA_CONFIGURE_OPTS="--with-ssl-dir=\$OPENSSL_HOME --with-zlib=\$ZLIB_HOME"
+export ZOPEN_MAKE_MINIMAL="yes"
+export ZOPEN_MAKE_OPTS="-j$NUM_JOBS"
+export ZOPEN_MAKE_CHECK_MINIMAL="yes"
+export ZOPEN_COMP=CLANG # use clang
+
+rm -f openssh-9.3
+ln -s ssh openssh-9.3
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  # Echo the following information to gauge build health
+  echo "actualFailures:0"
+  echo "totalTests:1"
+  echo "expectedFailures:0"
+  echo "expectedTotalTests:1"
+}
+
+zopen_append_to_env()
+{
+  # echo envars outside of PATH, MANPATH, LIBPATH
+}
+
+zopen_append_to_setup()
+{
+  # echo commands that will run when installing via setup.sh
+}
+
+zopen_get_version()
+{
+  # Modify to echo the version of your tool/library
+  # Rather than hardcoding the version, obtain the version by running the tool/library
+  echo "1.0.0"
+}
