@@ -7,9 +7,6 @@ export ZOPEN_MAKE_OPTS="-j$NUM_JOBS"
 export ZOPEN_MAKE_CHECK_MINIMAL="yes"
 export ZOPEN_COMP=CLANG # use clang
 
-rm -f openssh-9.3
-ln -s ssh openssh-9.3
-
 zopen_check_results()
 {
   dir="$1"
