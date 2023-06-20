@@ -3,7 +3,8 @@ export ZOPEN_TARBALL_DEPS="make zlib openssl zoslib tar gzip coreutils sed"
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_EXTRA_CONFIGURE_OPTS="--with-ssl-dir=\$OPENSSL_HOME --with-zlib=\$ZLIB_HOME"
 export ZOPEN_MAKE_MINIMAL="yes"
-export ZOPEN_MAKE_OPTS="-j$NUM_JOBS"
+export ZOPEN_MAKE_OPTS="-j\$ZOPEN_NUM_JOBS"
+export ZOPEN_CHECK_OPTS="tests -j\$ZOPEN_NUM_JOBS"
 export ZOPEN_MAKE_CHECK_MINIMAL="yes"
 export ZOPEN_COMP=CLANG # use clang
 
@@ -32,7 +33,5 @@ zopen_append_to_setup()
 
 zopen_get_version()
 {
-  # Modify to echo the version of your tool/library
-  # Rather than hardcoding the version, obtain the version by running the tool/library
-  echo "1.0.0"
+  echo "9.3"
 }
