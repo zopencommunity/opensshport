@@ -1,4 +1,4 @@
-export ZOPEN_TARBALL_URL="https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.3p1.tar.gz"
+export ZOPEN_TARBALL_URL="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.3p1.tar.gz"
 export ZOPEN_TARBALL_DEPS="make zlib openssl zoslib tar gzip coreutils sed"
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_EXTRA_CONFIGURE_OPTS="--with-ssl-dir=\$OPENSSL_HOME --with-zlib=\$ZLIB_HOME"
