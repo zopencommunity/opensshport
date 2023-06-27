@@ -1,0 +1,32 @@
+diff --git a/configure b/configure
+index 9ad9699..341d6e9 100755
+--- a/configure
++++ b/configure
+@@ -9060,6 +9060,11 @@ fi
+ rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+ }
+ 	;;
++*openedition*)
++
++  printf "%s\n" "#define IP_TOS_IS_BROKEN 1" >>confdefs.h
++  ;;
++
+ *-*-dgux*)
+ 
+ printf "%s\n" "#define IP_TOS_IS_BROKEN 1" >>confdefs.h
+@@ -15525,6 +15530,7 @@ _ACEOF
+ if ac_fn_c_try_run "$LINENO"
+ then :
+ 
++      chtag -tc 819 conftest.sslincver
+ 			ssl_header_ver=`cat conftest.sslincver`
+ 			{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ssl_header_ver" >&5
+ printf "%s\n" "$ssl_header_ver" >&6; }
+@@ -15610,6 +15616,7 @@ _ACEOF
+ if ac_fn_c_try_run "$LINENO"
+ then :
+ 
++      chtag -tc 819 conftest.ssllibver
+ 			ssl_library_ver=`cat conftest.ssllibver`
+ 			# Check version is supported.
+ 			case "$ssl_library_ver" in
