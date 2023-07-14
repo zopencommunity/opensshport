@@ -1,0 +1,16 @@
+diff --git a/configure b/configure
+index 9ad9699..341d6e9 100755
+--- a/configure
++++ b/configure
+@@ -9060,6 +9060,11 @@ fi
+ rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+ }
+ 	;;
++*openedition*)
++
++  printf "%s\n" "#define IP_TOS_IS_BROKEN 1" >>confdefs.h
++  ;;
++
+ *-*-dgux*)
+ 
+ printf "%s\n" "#define IP_TOS_IS_BROKEN 1" >>confdefs.h

@@ -31,26 +31,6 @@ index 3b380d9..05d0e7e 100644
  #ifdef HAVE_STRUCT_PASSWD_PW_GECOS
  	fake.pw_gecos = "NOUSER";
  #endif
-diff --git a/configure b/configure
-index 9ad9699..bdc3df3 100755
---- a/configure
-+++ b/configure
-@@ -15525,6 +15525,7 @@ _ACEOF
- if ac_fn_c_try_run "$LINENO"
- then :
- 
-+      chtag -tc 819 conftest.sslincver
- 			ssl_header_ver=`cat conftest.sslincver`
- 			{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ssl_header_ver" >&5
- printf "%s\n" "$ssl_header_ver" >&6; }
-@@ -15610,6 +15611,7 @@ _ACEOF
- if ac_fn_c_try_run "$LINENO"
- then :
- 
-+      chtag -tc 819 conftest.ssllibver
- 			ssl_library_ver=`cat conftest.ssllibver`
- 			# Check version is supported.
- 			case "$ssl_library_ver" in
 diff --git a/defines.h b/defines.h
 index 279e509..e07adf2 100644
 --- a/defines.h
