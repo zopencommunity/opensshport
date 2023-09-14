@@ -31,6 +31,13 @@ zopen_append_to_setup()
   # echo commands that will run when installing via setup.sh
 }
 
+zopen_post_install()
+{
+  install_dir="$1"
+  cp "$PWD/contrib/ssh-copy-id" "$install_dir/bin/ssh-copy-id"
+  chmod 755 "$install_dir/bin/ssh-copy-id"
+}
+
 zopen_get_version()
 {
   echo "9.3"
