@@ -12,9 +12,7 @@ node('linux')
   }
 
   stage('Build') {
-    build job: 'Port-Pipeline', parameters: [string(name: 'PORT_GITHUB_REPO', value: 'https://github.com/ZOSOpenTools/opensshport.git'), string(name: 'PORT_DESCRIPTION', value: 'OpenSSH' )]
-
-  string(name: 'BUILD_LINE', value: 'STABLE')]
+    build job: 'Port-Pipeline', parameters: [string(name: 'PORT_GITHUB_REPO', value: 'https://github.com/ZOSOpenTools/opensshport.git'), string(name: 'PORT_DESCRIPTION', value: 'OpenSSH' ),  string(name: 'BUILD_LINE', value: 'STABLE')]
   }
 }
 
