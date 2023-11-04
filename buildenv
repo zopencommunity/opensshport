@@ -1,6 +1,9 @@
-export ZOPEN_TARBALL_URL="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.3p1.tar.gz"
-export ZOPEN_TARBALL_DEPS="make zlib openssl zoslib tar gzip coreutils sed"
-export ZOPEN_TYPE="TARBALL"
+# bump: openssh-version /OPENSSH_VERSION="(.*)"/ https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/|re:/openssh-([\d.]+p?\d?).tar.gz/$1/|sort
+OPENSSH_VERSION="9.3p1"
+
+export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_STABLE_URL="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${OPENSSH_VERSION}.tar.gz"
+export ZOPEN_STABLE_DEPS="make zlib openssl zoslib tar gzip coreutils sed"
 export ZOPEN_EXTRA_CONFIGURE_OPTS="--with-ssl-dir=\$OPENSSL_HOME --with-zlib=\$ZLIB_HOME"
 export ZOPEN_MAKE_MINIMAL="yes"
 export ZOPEN_MAKE_OPTS="-j\$ZOPEN_NUM_JOBS"
@@ -40,5 +43,5 @@ zopen_post_install()
 
 zopen_get_version()
 {
-  echo "9.3"
+  echo "$OPENSSH_VERSION"
 }
