@@ -43,5 +43,5 @@ zopen_post_install()
 
 zopen_get_version()
 {
-  echo "$OPENSSH_VERSION"
+  echo $OPENSSH_VERSION | cut -d 'p' -f 1
 }
