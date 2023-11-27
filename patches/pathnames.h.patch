@@ -1,5 +1,5 @@
 diff --git a/pathnames.h b/pathnames.h
-index f7ca5a7..f121b63 100644
+index f7ca5a7..c5d5939 100644
 --- a/pathnames.h
 +++ b/pathnames.h
 @@ -47,6 +47,22 @@
@@ -7,7 +7,7 @@ index f7ca5a7..f121b63 100644
  #endif
  
 +#ifdef __MVS__
-+char* getRelativeSSHPath() {
++static char* getRelativeSSHPath() {
 +  char sshpath[PATH_MAX];
 +  volatile char* programdir = strdup(__getprogramdir()); // __getprogramdir from zoslib
 +  if (programdir) {
