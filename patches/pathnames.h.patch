@@ -1,49 +1,23 @@
 diff --git a/pathnames.h b/pathnames.h
-index f7ca5a7..865d6a5 100644
+index f7ca5a7..f121b63 100644
 --- a/pathnames.h
 +++ b/pathnames.h
-@@ -47,6 +47,48 @@
+@@ -47,6 +47,22 @@
  #define _PATH_SSH_PROGRAM		"/usr/bin/ssh"
  #endif
  
 +#ifdef __MVS__
-+#include <libgen.h>
-+#include <sys/ps.h>
-+#include <unistd.h>
-+#include <stdlib.h>
-+#include <stdio.h>
-+
-+
 +char* getRelativeSSHPath() {
-+    char argv[PATH_MAX];
-+    char parent[PATH_MAX];
-+    W_PSPROC buf;
-+    int token = 0;
-+    pid_t mypid = getpid();
-+    memset(&buf, 0, sizeof(buf));
-+    buf.ps_pathlen = PATH_MAX;
-+    buf.ps_pathptr = &argv[0];
-+    while ((token = w_getpsent(token, &buf, sizeof(buf))) > 0) {
-+      if (buf.ps_pid == mypid) {
-+        // Resolve path to find the true location of the executable.
-+        if (realpath(argv, parent) == NULL) {
-+            break;
-+        }
++  char sshpath[PATH_MAX];
++  volatile char* programdir = strdup(__getprogramdir()); // __getprogramdir from zoslib
++  if (programdir) {
++    snprintf(sshpath, PATH_MAX, "%s/ssh", programdir);
 +
-+        // Get the parent directory.
-+        dirname(parent);
-+
-+        // Append ssh
-+        char sshpath[PATH_MAX];
-+        snprintf(sshpath, sizeof(sshpath), "%s/ssh", parent);
-+        
-+        if (access(sshpath, X_OK) != -1) {
-+            return strdup(sshpath);
-+        }
-+        break;
-+      }
++    if (access(sshpath, X_OK) != -1) {
++      return strdup(sshpath);
 +    }
-+   return strdup("/bin/ssh");
++  }
++  return strdup("/bin/ssh");
 +}
 +#define _PATH_SSH_PROGRAM	getRelativeSSHPath()
 +#endif
