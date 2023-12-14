@@ -1,0 +1,16 @@
+diff --git a/auth-passwd.c b/auth-passwd.c
+index 347d91e..182047e 100644
+--- a/auth-passwd.c
++++ b/auth-passwd.c
+@@ -196,7 +196,11 @@ sys_auth_passwd(struct ssh *ssh, const char *password)
+ 	char *encrypted_password, *salt = NULL;
+ 
+ 	/* Just use the supplied fake password if authctxt is invalid */
++#ifdef __MVS__
++	char *pw_password = shadow_pw(pw);
++#else
+ 	char *pw_password = authctxt->valid ? shadow_pw(pw) : pw->pw_passwd;
++#endif
+ 
+ 	if (pw_password == NULL)
+ 		return 0;

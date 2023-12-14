@@ -1,0 +1,20 @@
+diff --git a/openbsd-compat/xcrypt.c b/openbsd-compat/xcrypt.c
+index 9cded66..a0e828e 100644
+--- a/openbsd-compat/xcrypt.c
++++ b/openbsd-compat/xcrypt.c
+@@ -128,6 +128,9 @@ xcrypt(const char *password, const char *salt)
+ char *
+ shadow_pw(struct passwd *pw)
+ {
++#ifdef __MVS__
++  return NULL;
++#else
+ 	char *pw_password = pw->pw_passwd;
+ 
+ # if defined(HAVE_SHADOW_H) && !defined(DISABLE_SHADOW)
+@@ -153,4 +156,5 @@ shadow_pw(struct passwd *pw)
+ # endif
+ 
+ 	return pw_password;
++#endif
+ }

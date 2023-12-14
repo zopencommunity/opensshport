@@ -1,0 +1,15 @@
+diff --git a/sshconnect.c b/sshconnect.c
+index e6012f0..89d782c 100644
+--- a/sshconnect.c
++++ b/sshconnect.c
+@@ -590,6 +590,10 @@ confirm(const char *prompt, const char *fingerprint)
+ 	}
+ }
+ 
++#ifdef __MVS__
++#define IN_LOOPBACKNET 127
++#endif
++
+ static int
+ sockaddr_is_local(struct sockaddr *hostaddr)
+ {

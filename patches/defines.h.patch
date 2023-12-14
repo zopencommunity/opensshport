@@ -1,0 +1,17 @@
+diff --git a/defines.h b/defines.h
+index 279e509..e07adf2 100644
+--- a/defines.h
++++ b/defines.h
+@@ -55,8 +55,12 @@ enum
+ /*
+  * Definitions for IP type of service (ip_tos)
+  */
++#ifndef __MVS__
+ #include <netinet/in_systm.h>
+ #include <netinet/ip.h>
++#else
++#include <netinet/in.h>
++#endif
+ #ifndef IPTOS_LOWDELAY
+ # define IPTOS_LOWDELAY          0x10
+ # define IPTOS_THROUGHPUT        0x08

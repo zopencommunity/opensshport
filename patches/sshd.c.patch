@@ -1,0 +1,15 @@
+diff --git a/sshd.c b/sshd.c
+index 264e81a..336e24f 100644
+--- a/sshd.c
++++ b/sshd.c
+@@ -1823,8 +1823,10 @@ main(int ac, char **av)
+ 			    SSH_PRIVSEP_USER);
+ 	} else {
+ 		privsep_pw = pwcopy(privsep_pw);
++#ifndef __MVS__
+ 		freezero(privsep_pw->pw_passwd, strlen(privsep_pw->pw_passwd));
+ 		privsep_pw->pw_passwd = xstrdup("*");
++#endif
+ 	}
+ 	endpwent();
+ 
