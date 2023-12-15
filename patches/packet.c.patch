@@ -1,0 +1,14 @@
+diff --git a/packet.c b/packet.c
+index fd14f00..0683d49 100644
+--- a/packet.c
++++ b/packet.c
+@@ -47,7 +47,9 @@
+ #endif
+ 
+ #include <netinet/in.h>
++#ifndef __MVS__
+ #include <netinet/ip.h>
++#endif
+ #include <arpa/inet.h>
+ 
+ #include <errno.h>

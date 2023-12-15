@@ -1,0 +1,17 @@
+diff --git a/readconf.c b/readconf.c
+index 131c24f..1dabebf 100644
+--- a/readconf.c
++++ b/readconf.c
+@@ -22,8 +22,12 @@
+ 
+ #include <net/if.h>
+ #include <netinet/in.h>
++#ifndef __MVS__
+ #include <netinet/in_systm.h>
+ #include <netinet/ip.h>
++#else
++#include <netinet/ip6.h>
++#endif
+ #include <arpa/inet.h>
+ 
+ #include <ctype.h>

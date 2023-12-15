@@ -1,0 +1,14 @@
+diff --git a/monitor_wrap.c b/monitor_wrap.c
+index 8e379a1..834954b 100644
+--- a/monitor_wrap.c
++++ b/monitor_wrap.c
+@@ -294,7 +294,9 @@ mm_getpwnamallow(struct ssh *ssh, const char *username)
+ 	GETPW(m, pw_expire);
+ #endif
+ 	if ((r = sshbuf_get_cstring(m, &pw->pw_name, NULL)) != 0 ||
++#ifndef __MVS__
+ 	    (r = sshbuf_get_cstring(m, &pw->pw_passwd, NULL)) != 0 ||
++#endif
+ #ifdef HAVE_STRUCT_PASSWD_PW_GECOS
+ 	    (r = sshbuf_get_cstring(m, &pw->pw_gecos, NULL)) != 0 ||
+ #endif

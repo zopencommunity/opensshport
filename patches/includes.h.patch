@@ -1,0 +1,14 @@
+diff --git a/includes.h b/includes.h
+index 6d17ef6..63a1cae 100644
+--- a/includes.h
++++ b/includes.h
+@@ -109,7 +109,9 @@
+ #endif
+ 
+ #include <netinet/in.h>
++#if !defined(__MVS__)
+ #include <netinet/in_systm.h> /* For typedefs */
++#endif
+ #ifdef HAVE_RPC_TYPES_H
+ # include <rpc/types.h> /* For INADDR_LOOPBACK */
+ #endif

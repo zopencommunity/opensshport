@@ -1,0 +1,22 @@
+diff --git a/scp.c b/scp.c
+index a893d4a..58f1c8a 100644
+--- a/scp.c
++++ b/scp.c
+@@ -173,7 +173,7 @@ int throughlocal = 1;
+ int sshport = -1;
+ 
+ /* This is the program to execute for the secured connection. ("ssh" or -S) */
+-char *ssh_program = _PATH_SSH_PROGRAM;
++char *ssh_program;
+ 
+ /* This is used to store the pid of ssh_program */
+ pid_t do_cmd_pid = -1;
+@@ -478,6 +478,8 @@ main(int argc, char **argv)
+ 	char *sftp_direct = NULL;
+ 	long long llv;
+ 
++  ssh_program = _PATH_SSH_PROGRAM;
++
+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
+ 	sanitise_stdfd();
+ 

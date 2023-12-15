@@ -1,0 +1,27 @@
+diff --git a/pathnames.h b/pathnames.h
+index f7ca5a7..c5d5939 100644
+--- a/pathnames.h
++++ b/pathnames.h
+@@ -47,6 +47,22 @@
+ #define _PATH_SSH_PROGRAM		"/usr/bin/ssh"
+ #endif
+ 
++#ifdef __MVS__
++static char* getRelativeSSHPath() {
++  char sshpath[PATH_MAX];
++  volatile char* programdir = strdup(__getprogramdir()); // __getprogramdir from zoslib
++  if (programdir) {
++    snprintf(sshpath, PATH_MAX, "%s/ssh", programdir);
++
++    if (access(sshpath, X_OK) != -1) {
++      return strdup(sshpath);
++    }
++  }
++  return strdup("/bin/ssh");
++}
++#define _PATH_SSH_PROGRAM	getRelativeSSHPath()
++#endif
++
+ /*
+  * The process id of the daemon listening for connections is saved here to
+  * make it easier to kill the correct daemon when necessary.

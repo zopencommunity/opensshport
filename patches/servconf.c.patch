@@ -1,0 +1,16 @@
+diff --git a/servconf.c b/servconf.c
+index 9d5b73e..8230c0e 100644
+--- a/servconf.c
++++ b/servconf.c
+@@ -21,8 +21,10 @@
+ #endif
+ 
+ #include <netinet/in.h>
+-#include <netinet/in_systm.h>
++#ifndef __MVS__
+ #include <netinet/ip.h>
++#include <netinet/in_systm.h>
++#endif
+ #ifdef HAVE_NET_ROUTE_H
+ #include <net/route.h>
+ #endif

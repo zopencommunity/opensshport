@@ -1,0 +1,56 @@
+diff --git a/misc.c b/misc.c
+index 6135b15..508f646 100644
+--- a/misc.c
++++ b/misc.c
+@@ -44,8 +44,10 @@
+ #include <unistd.h>
+ 
+ #include <netinet/in.h>
++#ifndef __MVS__
+ #include <netinet/in_systm.h>
+ #include <netinet/ip.h>
++#endif
+ #include <netinet/tcp.h>
+ #include <arpa/inet.h>
+ 
+@@ -460,7 +462,9 @@ pwcopy(struct passwd *pw)
+ 	struct passwd *copy = xcalloc(1, sizeof(*copy));
+ 
+ 	copy->pw_name = xstrdup(pw->pw_name);
++#ifndef __MVS__
+ 	copy->pw_passwd = xstrdup(pw->pw_passwd == NULL ? "*" : pw->pw_passwd);
++#endif
+ #ifdef HAVE_STRUCT_PASSWD_PW_GECOS
+ 	copy->pw_gecos = xstrdup(pw->pw_gecos);
+ #endif
+@@ -1717,12 +1721,14 @@ monotime_double(void)
+ void
+ bandwidth_limit_init(struct bwlimit *bw, u_int64_t kbps, size_t buflen)
+ {
++#ifndef __MVS__
+ 	bw->buflen = buflen;
+ 	bw->rate = kbps;
+ 	bw->thresh = buflen;
+ 	bw->lamt = 0;
+ 	timerclear(&bw->bwstart);
+ 	timerclear(&bw->bwend);
++#endif
+ }
+ 
+ /* Callback from read/write loop to insert bandwidth-limiting delays */
+@@ -1732,6 +1738,7 @@ bandwidth_limit(struct bwlimit *bw, size_t read_len)
+ 	u_int64_t waitlen;
+ 	struct timespec ts, rm;
+ 
++#ifndef __MVS__
+ 	bw->lamt += read_len;
+ 	if (!timerisset(&bw->bwstart)) {
+ 		monotime_tv(&bw->bwstart);
+@@ -1775,6 +1782,7 @@ bandwidth_limit(struct bwlimit *bw, size_t read_len)
+ 
+ 	bw->lamt = 0;
+ 	monotime_tv(&bw->bwstart);
++#endif
+ }
+ 
+ /* Make a template filename for mk[sd]temp() */

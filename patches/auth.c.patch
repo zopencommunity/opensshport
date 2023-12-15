@@ -1,0 +1,17 @@
+diff --git a/auth.c b/auth.c
+index 3b380d9..05d0e7e 100644
+--- a/auth.c
++++ b/auth.c
+@@ -618,10 +618,12 @@ fakepw(void)
+ 
+ 	memset(&fake, 0, sizeof(fake));
+ 	fake.pw_name = "NOUSER";
++#ifndef __MVS__
+ 	fake.pw_passwd = xstrdup("$2a$10$"
+ 	    "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+ 	for (cp = fake.pw_passwd + 7; *cp != '\0'; cp++)
+ 		*cp = hashchars[arc4random_uniform(sizeof(hashchars) - 1)];
++#endif
+ #ifdef HAVE_STRUCT_PASSWD_PW_GECOS
+ 	fake.pw_gecos = "NOUSER";
+ #endif
