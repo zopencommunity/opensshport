@@ -39,6 +39,14 @@ zopen_post_install()
   install_dir="$1"
   cp "$PWD/contrib/ssh-copy-id" "$install_dir/bin/ssh-copy-id"
   chmod 755 "$install_dir/bin/ssh-copy-id"
+
+  #TODO These are broken:
+  rm $ZOPEN_INSTALL_DIR/bin/sftp
+  rm $ZOPEN_INSTALL_DIR/bin/scp
+
+  mv $ZOPEN_INSTALL_DIR/bin/ssh $ZOPEN_INSTALL_DIR/bin/gssh
+  mkdir $ZOPEN_INSTALL_DIR/altbin
+  ln -s ../bin/gssh $ZOPEN_INSTALL_DIR/altbin/ssh
 }
 
 zopen_get_version()
