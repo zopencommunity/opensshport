@@ -44,15 +44,15 @@ zopen_post_install()
   rm $ZOPEN_INSTALL_DIR/bin/sftp
   rm $ZOPEN_INSTALL_DIR/bin/scp
 
-  mv $ZOPEN_INSTALL_DIR/bin/ssh $ZOPEN_INSTALL_DIR/bin/zssh
+  mv $ZOPEN_INSTALL_DIR/bin/ssh $ZOPEN_INSTALL_DIR/bin/zotssh
   mkdir $ZOPEN_INSTALL_DIR/altbin
-  ln -s ../bin/zssh $ZOPEN_INSTALL_DIR/altbin/ssh
+  ln -s ../bin/zotssh $ZOPEN_INSTALL_DIR/altbin/ssh
 }
 
 zopen_install_caveats()
 {
 cat <<ZZ
-Openssh has been installed with the prefix "z" under bin/zssh to avoid collision with z/OS /bin/ssh.
+Openssh has been installed with the prefix "zot" under bin/zotssh to avoid collision with z/OS /bin/ssh.
 If you prefer to use OpenSSH as ssh, source zopen-config with the option --override-zos-tools.
 Or add \$ZOPEN_ROOTFS/usr/local/altbin to your \$PATH.
 ZZ
