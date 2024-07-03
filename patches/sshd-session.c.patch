@@ -1,0 +1,16 @@
+diff --git a/sshd-session.c b/sshd-session.c
+index fe6ae7f..c0537c2 100644
+--- a/sshd-session.c
++++ b/sshd-session.c
+@@ -1079,9 +1079,11 @@ main(int ac, char **av)
+ 			fatal("Privilege separation user %s does not exist",
+ 			    SSH_PRIVSEP_USER);
+ 	} else {
++#ifndef __MVS__
+ 		privsep_pw = pwcopy(privsep_pw);
+ 		freezero(privsep_pw->pw_passwd, strlen(privsep_pw->pw_passwd));
+ 		privsep_pw->pw_passwd = xstrdup("*");
++#endif
+ 	}
+ 	endpwent();
+ 
