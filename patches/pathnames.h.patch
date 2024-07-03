@@ -1,11 +1,13 @@
 diff --git a/pathnames.h b/pathnames.h
-index f7ca5a7..c5d5939 100644
+index 61c5f84..0a9b3a6 100644
 --- a/pathnames.h
 +++ b/pathnames.h
-@@ -47,6 +47,22 @@
- #define _PATH_SSH_PROGRAM		"/usr/bin/ssh"
- #endif
+@@ -43,8 +43,20 @@
+ #define _PATH_HOST_RSA_KEY_FILE		SSHDIR "/ssh_host_rsa_key"
+ #define _PATH_DH_MODULI			SSHDIR "/moduli"
  
+-#ifndef _PATH_SSH_PROGRAM
+-#define _PATH_SSH_PROGRAM		"/usr/bin/ssh"
 +#ifdef __MVS__
 +static char* getRelativeSSHPath() {
 +  char sshpath[PATH_MAX];
@@ -20,8 +22,6 @@ index f7ca5a7..c5d5939 100644
 +  return strdup("/bin/ssh");
 +}
 +#define _PATH_SSH_PROGRAM	getRelativeSSHPath()
-+#endif
-+
- /*
-  * The process id of the daemon listening for connections is saved here to
-  * make it easier to kill the correct daemon when necessary.
+ #endif
+ 
+ /* Binary paths for the sshd components */
