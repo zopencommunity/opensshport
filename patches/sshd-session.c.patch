@@ -1,8 +1,8 @@
 diff --git a/sshd-session.c b/sshd-session.c
-index fe6ae7f..c0537c2 100644
+index 4b79b9b..0f2dec4 100644
 --- a/sshd-session.c
 +++ b/sshd-session.c
-@@ -1079,9 +1079,11 @@ main(int ac, char **av)
+@@ -1081,9 +1081,11 @@ main(int ac, char **av)
  			fatal("Privilege separation user %s does not exist",
  			    SSH_PRIVSEP_USER);
  	} else {
@@ -14,3 +14,24 @@ index fe6ae7f..c0537c2 100644
  	}
  	endpwent();
  
+@@ -1280,7 +1282,9 @@ main(int ac, char **av)
+ 	if (!debug_flag && options.login_grace_time > 0) {
+ 		int ujitter = arc4random_uniform(4 * 1000000);
+ 
++#ifndef __MVS__
+ 		timerclear(&itv.it_interval);
++#endif
+ 		itv.it_value.tv_sec = options.login_grace_time;
+ 		itv.it_value.tv_sec += ujitter / 1000000;
+ 		itv.it_value.tv_usec = ujitter % 1000000; 
+@@ -1331,8 +1335,10 @@ main(int ac, char **av)
+ 	 * Cancel the alarm we set to limit the time taken for
+ 	 * authentication.
+ 	 */
++#ifndef __MVS__
+ 	timerclear(&itv.it_interval);
+ 	timerclear(&itv.it_value);
++#endif
+ 	if (setitimer(ITIMER_REAL, &itv, NULL) == -1)
+ 		fatal("login grace time clear failed");
+ 	ssh_signal(SIGALRM, SIG_DFL);

@@ -1,8 +1,8 @@
 diff --git a/misc.c b/misc.c
-index 6135b15..508f646 100644
+index afdf514..7706cf5 100644
 --- a/misc.c
 +++ b/misc.c
-@@ -44,8 +44,10 @@
+@@ -51,8 +51,10 @@
  #include <unistd.h>
  
  #include <netinet/in.h>
@@ -13,7 +13,7 @@ index 6135b15..508f646 100644
  #include <netinet/tcp.h>
  #include <arpa/inet.h>
  
-@@ -460,7 +462,9 @@ pwcopy(struct passwd *pw)
+@@ -486,7 +488,9 @@ pwcopy(struct passwd *pw)
  	struct passwd *copy = xcalloc(1, sizeof(*copy));
  
  	copy->pw_name = xstrdup(pw->pw_name);
@@ -23,7 +23,7 @@ index 6135b15..508f646 100644
  #ifdef HAVE_STRUCT_PASSWD_PW_GECOS
  	copy->pw_gecos = xstrdup(pw->pw_gecos);
  #endif
-@@ -1717,12 +1721,14 @@ monotime_double(void)
+@@ -1760,12 +1764,14 @@ monotime_double(void)
  void
  bandwidth_limit_init(struct bwlimit *bw, u_int64_t kbps, size_t buflen)
  {
@@ -38,7 +38,7 @@ index 6135b15..508f646 100644
  }
  
  /* Callback from read/write loop to insert bandwidth-limiting delays */
-@@ -1732,6 +1738,7 @@ bandwidth_limit(struct bwlimit *bw, size_t read_len)
+@@ -1775,6 +1781,7 @@ bandwidth_limit(struct bwlimit *bw, size_t read_len)
  	u_int64_t waitlen;
  	struct timespec ts, rm;
  
@@ -46,7 +46,7 @@ index 6135b15..508f646 100644
  	bw->lamt += read_len;
  	if (!timerisset(&bw->bwstart)) {
  		monotime_tv(&bw->bwstart);
-@@ -1775,6 +1782,7 @@ bandwidth_limit(struct bwlimit *bw, size_t read_len)
+@@ -1818,6 +1825,7 @@ bandwidth_limit(struct bwlimit *bw, size_t read_len)
  
  	bw->lamt = 0;
  	monotime_tv(&bw->bwstart);
