@@ -2,6 +2,7 @@
 OPENSSH_VERSION="9.9p1"
 
 export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_CATEGORIES="security"
 export ZOPEN_STABLE_URL="https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-${OPENSSH_VERSION}.tar.gz"
 export ZOPEN_STABLE_DEPS="make zlib openssl zoslib tar gzip coreutils sed man-db groff gawk sed"
 export ZOPEN_EXTRA_CONFIGURE_OPTS="--with-ssl-dir=\$OPENSSL_HOME --with-zlib=\$ZLIB_HOME --with-mantype=man"
