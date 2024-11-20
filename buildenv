@@ -48,14 +48,19 @@ zopen_post_install()
   mv $ZOPEN_INSTALL_DIR/bin/ssh $ZOPEN_INSTALL_DIR/bin/zotssh
   mkdir $ZOPEN_INSTALL_DIR/altbin
   ln -s ../bin/zotssh $ZOPEN_INSTALL_DIR/altbin/ssh
+
+  mkdir -p $ZOPEN_INSTALL_DIR/share/altman/man1
+  mv $ZOPEN_INSTALL_DIR/share/man/man1/ssh.1 $ZOPEN_INSTALL_DIR/share/man/man1/zotssh.1
+  ln -s ../../man/man1/zotssh.1 $ZOPEN_INSTALL_DIR/share/altman/man1/ssh.1
 }
 
 zopen_install_caveats()
 {
 cat <<ZZ
-Openssh has been installed with the prefix "zot" under bin/zotssh to avoid collision with z/OS /bin/ssh.
-If you prefer to use OpenSSH as ssh, source zopen-config with the option --override-zos-tools.
-Or add \$ZOPEN_ROOTFS/usr/local/altbin to your \$PATH.
+openssh has been installed as zotssh under the bin/ dir to avoid collision with z/OS /bin/ssh.
+The conflicting manpages have been installed under the share/altman dir. You can use zotman to view
+the manpages as such: zotman zotssh
+If you prefer to use the GNU ssh as ssh, source zopen-config with the option --override-zos-tools.
 ZZ
 }
 
