@@ -1,5 +1,5 @@
 # bump: openssh-version /OPENSSH_VERSION="(.*)"/ https://cdn.openbsd.org/pub/OpenBSD/OpenSSH/portable/|re:#href="openssh-(\d+)\.(\d+)p(\d+)\.tar\.gz"#${1}.${2}.${3}#|semver:*|re:/^(?P<name>\d+\.\d+)\.(?P<value>\d+)$/${name}p${value}/
-OPENSSH_VERSION="9.9p1"
+OPENSSH_VERSION="10.3p1"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_CATEGORIES="security"

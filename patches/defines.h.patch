@@ -1,13 +1,12 @@
 diff --git a/defines.h b/defines.h
-index 279e509..e07adf2 100644
+index 1d5bc04..f983e09 100644
 --- a/defines.h
 +++ b/defines.h
-@@ -55,8 +55,12 @@ enum
+@@ -55,7 +55,11 @@ enum
  /*
   * Definitions for IP type of service (ip_tos)
   */
 +#ifndef __MVS__
- #include <netinet/in_systm.h>
  #include <netinet/ip.h>
 +#else
 +#include <netinet/in.h>

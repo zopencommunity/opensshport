@@ -1,14 +1,15 @@
 diff --git a/sshkey.c b/sshkey.c
-index 1db8378..91cbfd3 100644
+index 59d1453..4e5652f 100644
 --- a/sshkey.c
 +++ b/sshkey.c
-@@ -30,6 +30,9 @@
- #include <sys/types.h>
+@@ -31,6 +31,10 @@
  #include <sys/mman.h>
  #include <netinet/in.h>
+ 
 +#ifdef __MVS__
 +#define MAP_ANON 0
 +#endif
- 
++
  #ifdef WITH_OPENSSL
+ #include <openssl/bn.h>
  #include <openssl/evp.h>
