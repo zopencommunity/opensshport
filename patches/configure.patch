@@ -1,10 +1,10 @@
 diff --git a/configure b/configure
-index 9ad9699..341d6e9 100755
+index e2174fc..87a2e77 100755
 --- a/configure
 +++ b/configure
-@@ -9060,6 +9060,11 @@ fi
- rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+@@ -12233,6 +12233,11 @@ printf "%s\n" "$ac_res" >&6; }
  }
+ 	SHLIBEXT=".dll"
  	;;
 +*openedition*)
 +
